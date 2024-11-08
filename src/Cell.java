@@ -29,7 +29,7 @@ public class Cell{
     }
 
     public void draw(Graphics g){
-        g.setColor();
+        g.setColor(BG_COLOR);
         g.drawRect(row * cellSize + (row - 1) * spacing, col * cellSize + (col - 1) * spacing, cellSize, cellSize);
         if (type == CellType.O){
             g.setColor(O_COLOR);

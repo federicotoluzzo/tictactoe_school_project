@@ -29,7 +29,24 @@ public class GameMenu extends JPanel {
         difficulty.addItem("Unbeatable");
         difficulty.setSelectedIndex(2);
 
-        startGame.addActionListener(e -> {
+        opponentIP.setVisible(false);
+        difficulty.setVisible(false);
+
+        bot.addActionListener(_ -> {
+            opponentIP.setVisible(false);
+            difficulty.setVisible(true);
+
+            gm.getFrame().pack();
+        });
+
+        lan.addActionListener(_ -> {
+            opponentIP.setVisible(true);
+            difficulty.setVisible(false);
+
+            gm.getFrame().pack();
+        });
+
+        startGame.addActionListener(_ -> {
             if(bot.isSelected()){
                 if(difficulty.getSelectedIndex() >= 0){
 
@@ -52,5 +69,12 @@ public class GameMenu extends JPanel {
                 f.setVisible(true);
             }
         });
+
+        add(difficulty);
+        add(startGame);
+        add(bot);
+        add(lan);
+        add(opponentIP);
+        add(difficulty);
     }
 }
