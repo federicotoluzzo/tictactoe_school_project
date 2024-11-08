@@ -1,8 +1,10 @@
+import enums.GameDifficulty;
+
 public class GameManager {
-    public void startLocalGame(){
+    public void startLocalGame(GameDifficulty difficulty){
 
     }
-    public void startLANGame(){
+    public void startLANGame(String opponentIP){
 
     }
 }

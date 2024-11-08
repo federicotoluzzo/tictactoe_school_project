@@ -1,3 +1,5 @@
+import enums.GameDifficulty;
+
 import javax.swing.*;
 
 public class GameMenu extends JPanel {
@@ -8,9 +10,11 @@ public class GameMenu extends JPanel {
     private JComboBox<String> difficulty;
     private JButton startGame = new JButton("Start");
 
-    private boolean isGamemodeBot;
+    private GameManager gm;
 
-    public GameMenu() {
+    public GameMenu(GameManager gm) {
+        this.gm = gm;
+
         gamemode = new ButtonGroup();
         bot = new JRadioButton("Bot");
         lan = new JRadioButton("Lan");
@@ -25,16 +29,27 @@ public class GameMenu extends JPanel {
         difficulty.addItem("Unbeatable");
         difficulty.setSelectedIndex(2);
 
-        bot.addActionListener(e -> {
-            isGamemodeBot = true;
-        });
-        lan.addActionListener(e -> {
-            isGamemodeBot = false;
-        });
-
         startGame.addActionListener(e -> {
-            if(isGamemodeBot){
+            if(bot.isSelected()){
+                if(difficulty.getSelectedIndex() >= 0){
 
+                }
+                gm.startLocalGame(switch (difficulty.getSelectedIndex()) {
+                    case 0 -> GameDifficulty.EASY;
+                    case 1 -> GameDifficulty.MEDIUM;
+                    case 2 -> GameDifficulty.HARD;
+                    case 3 -> GameDifficulty.UNBEATABLE;
+                    default -> throw new IllegalStateException("Unexpected value: " + difficulty.getSelectedIndex());
+                });
+            }else if(lan.isSelected()){
+
+                gm.startLANGame("placeholder");
+            }else{
+                JFrame f = new JFrame("Wait!");
+                JButton b = new JButton("Close");
+                b.addActionListener(_ -> f.setVisible(false));
+                f.add(new JLabel("You need to select an option before starting the game!"));
+                f.setVisible(true);
             }
         });
     }

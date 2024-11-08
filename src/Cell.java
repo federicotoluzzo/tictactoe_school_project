@@ -1,3 +1,5 @@
+import enums.CellType;
+
 import java.awt.*;
 
 public class Cell{
