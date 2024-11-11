@@ -1,6 +1,7 @@
 import enums.GameDifficulty;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class GameMenu extends JPanel {
     private JTextField opponentIP;
@@ -15,6 +16,9 @@ public class GameMenu extends JPanel {
     public GameMenu(GameManager gm) {
         this.gm = gm;
 
+        setLayout(new FlowLayout(FlowLayout.CENTER));
+        setPreferredSize(new Dimension(350, 75));
+
         gamemode = new ButtonGroup();
         bot = new JRadioButton("Bot");
         lan = new JRadioButton("Lan");
@@ -22,6 +26,7 @@ public class GameMenu extends JPanel {
         gamemode.add(lan);
 
         opponentIP = new JTextField("192.168.1.");
+        opponentIP.setColumns(10);
         difficulty = new JComboBox<>();
         difficulty.addItem("Easy");
         difficulty.addItem("Medium");

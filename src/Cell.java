@@ -39,4 +39,12 @@ public class Cell{
             g.setColor(X_COLOR);
         }
     }
+
+    public CellType getType() {
+        return type;
+    }
+
+    public void setType(CellType type) {
+        this.type = type;
+    }
 }
